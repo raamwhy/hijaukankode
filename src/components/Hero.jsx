@@ -7,6 +7,13 @@ import {
   Sparkles,
   Zap,
 } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  fadeDown,
+  fadeUp,
+  floatingAnimation,
+  scaleIn,
+} from "../utils/animations.js";
 
 const visualItems = [
   { label: "Hemat Energi", icon: Zap, tone: "bg-emerald-100 text-emerald-700" },
@@ -23,42 +30,84 @@ export default function Hero() {
     >
       <div className="section-shell grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
-          <div className="flex flex-wrap gap-3">
+          <motion.div
+            variants={fadeDown}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-wrap gap-3"
+          >
             <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-sm font-bold text-emerald-700 shadow-sm">
               <Sparkles size={16} />
               Aksi Digital untuk Semua Kalangan
             </span>
-          </div>
+          </motion.div>
 
-          <h1 className="mt-8 max-w-4xl text-4xl font-black tracking-normal text-slate-950 sm:text-5xl lg:text-6xl">
+          <motion.h1
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.08 }}
+            className="mt-8 max-w-4xl text-4xl font-black tracking-normal text-slate-950 sm:text-5xl lg:text-6xl"
+          >
             Hijaukan Kode, Sebarkan Energi Baik untuk Bumi
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
+          </motion.h1>
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.16 }}
+            className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl"
+          >
             Website edukasi dan checklist aksi harian untuk membantu masyarakat
             membangun kebiasaan ramah lingkungan melalui teknologi sederhana.
-          </p>
+          </motion.p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.24 }}
+            className="mt-8 flex flex-col gap-3 sm:flex-row"
+          >
+            <motion.a
               href="#checklist"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3.5 text-base font-bold text-white shadow-lg shadow-emerald-600/25 transition hover:-translate-y-1 hover:bg-emerald-700"
             >
               Mulai Checklist
               <ArrowRight size={18} />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="#edukasi"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
               className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3.5 text-base font-bold text-slate-800 shadow-sm transition hover:-translate-y-1 hover:border-emerald-200 hover:text-emerald-700"
             >
               Lihat Edukasi
               <Leaf size={18} />
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         </div>
 
-        <div className="relative">
-          <div className="absolute -left-4 top-8 h-24 w-24 rounded-full bg-emerald-300/30 blur-2xl" />
-          <div className="absolute bottom-8 right-0 h-32 w-32 rounded-full bg-sky-300/30 blur-3xl" />
+        <motion.div
+          variants={scaleIn}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.28 }}
+          className="relative"
+        >
+          <motion.div
+            animate={floatingAnimation}
+            className="absolute -left-4 top-8 h-24 w-24 rounded-full bg-emerald-300/30 blur-2xl"
+          />
+          <motion.div
+            animate={{
+              y: [0, 12, 0],
+              transition: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+            }}
+            className="absolute bottom-8 right-0 h-32 w-32 rounded-full bg-sky-300/30 blur-3xl"
+          />
           <div className="soft-card relative overflow-hidden p-5 sm:p-7">
             <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-emerald-500 via-sky-400 to-lime-400" />
             <div className="flex items-start justify-between gap-4">
@@ -75,12 +124,21 @@ export default function Hero() {
               </span>
             </div>
 
-            <div className="mt-7 grid gap-4 sm:grid-cols-2">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.09, delayChildren: 0.35 } },
+              }}
+              className="mt-7 grid gap-4 sm:grid-cols-2"
+            >
               {visualItems.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div
+                  <motion.div
                     key={item.label}
+                    variants={fadeUp}
                     className="rounded-lg border border-slate-100 bg-slate-50 p-4 transition hover:-translate-y-1 hover:bg-white hover:shadow-md"
                   >
                     <span
@@ -91,10 +149,10 @@ export default function Hero() {
                     <p className="text-base font-extrabold text-slate-900">
                       {item.label}
                     </p>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
 
             <div className="mt-6 rounded-lg bg-slate-950 p-5 text-white">
               <p className="text-sm font-semibold text-emerald-200">
@@ -103,7 +161,7 @@ export default function Hero() {
               <p className="mt-2 text-3xl font-black">Aksi dimulai hari ini.</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -7,6 +7,12 @@ import {
   Trash2,
   Zap,
 } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  fadeUp,
+  staggerContainer,
+  viewportOnce,
+} from "../utils/animations.js";
 
 const educationCards = [
   {
@@ -56,7 +62,13 @@ export default function Education() {
   return (
     <section id="edukasi" className="bg-slate-50 py-20">
       <div className="section-shell">
-        <div className="max-w-3xl">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="max-w-3xl"
+        >
           <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-emerald-700 shadow-sm">
             <BookOpen size={16} />
             Edukasi Lingkungan
@@ -69,14 +81,21 @@ export default function Education() {
             media sosial. Setiap kebiasaan yang lebih sadar bisa menjadi bagian
             dari perubahan.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3"
+        >
           {educationCards.map((card) => {
             const Icon = card.icon;
             return (
-              <article
+              <motion.article
                 key={card.title}
+                variants={fadeUp}
                 className="soft-card group p-6 hover:-translate-y-1 hover:border-emerald-200 hover:bg-emerald-50/25"
               >
                 <span
@@ -90,10 +109,10 @@ export default function Education() {
                 <p className="mt-3 leading-7 text-slate-600">
                   {card.description}
                 </p>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

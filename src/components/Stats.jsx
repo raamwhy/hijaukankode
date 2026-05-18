@@ -1,4 +1,13 @@
 import { BarChart3, CheckCircle2, Leaf, Trophy } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  fadeLeft,
+  fadeRight,
+  fadeUp,
+  scaleIn,
+  staggerContainer,
+  viewportOnce,
+} from "../utils/animations.js";
 
 function getEnergyLevel(progress) {
   if (progress === 100) return "Pahlawan Bumi Hari Ini";
@@ -40,7 +49,12 @@ export default function Stats({ completedCount, progress, totalActions }) {
     <section className="bg-slate-50 py-20">
       <div className="section-shell">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div>
+          <motion.div
+            variants={fadeRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-emerald-700 shadow-sm">
               <BarChart3 size={16} />
               Statistik Aksi
@@ -64,10 +78,19 @@ export default function Stats({ completedCount, progress, totalActions }) {
                 <p className="text-lg font-black text-slate-950">{level}</p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="grid gap-5 md:grid-cols-[0.9fr_1.1fr]">
-            <div className="soft-card flex min-h-[280px] items-center justify-center p-6">
+          <motion.div
+            variants={fadeLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="grid gap-5 md:grid-cols-[0.9fr_1.1fr]"
+          >
+            <motion.div
+              variants={scaleIn}
+              className="soft-card flex min-h-[280px] items-center justify-center p-6"
+            >
               <div
                 className="flex h-48 w-48 items-center justify-center rounded-full p-4"
                 style={{
@@ -83,13 +106,23 @@ export default function Stats({ completedCount, progress, totalActions }) {
                   </span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="grid gap-4">
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              className="grid gap-4"
+            >
               {stats.map((stat) => {
                 const Icon = stat.icon;
                 return (
-                  <article key={stat.label} className="soft-card p-5">
+                  <motion.article
+                    key={stat.label}
+                    variants={fadeUp}
+                    className="soft-card p-5"
+                  >
                     <div className="flex items-center gap-4">
                       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
                         <Icon size={22} />
@@ -106,11 +139,11 @@ export default function Stats({ completedCount, progress, totalActions }) {
                         </p>
                       </div>
                     </div>
-                  </article>
+                  </motion.article>
                 );
               })}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
