@@ -4,7 +4,6 @@ import {
   Droplets,
   Leaf,
   Recycle,
-  Sparkles,
   Zap,
 } from "lucide-react";
 import { motion } from "framer-motion";
@@ -36,8 +35,7 @@ export default function Hero() {
             animate="visible"
             className="flex flex-wrap gap-3"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-sm font-bold text-emerald-700 shadow-sm">
-              <Sparkles size={16} />
+            <span className="inline-flex items-center rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-sm font-bold text-emerald-700 shadow-sm">
               Aksi Digital untuk Semua Kalangan
             </span>
           </motion.div>
