@@ -15,7 +15,7 @@ export default function Navbar() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-emerald-100/80 bg-white/90 shadow-sm backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-emerald-100/80 bg-white/90 shadow-sm backdrop-blur-xl">
       <nav className="section-shell flex h-16 items-center justify-between">
         <a
           href="#beranda"

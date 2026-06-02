@@ -93,7 +93,7 @@ export default function App() {
   return (
     <div className="min-h-screen overflow-hidden bg-slate-50">
       <Navbar />
-      <main>
+      <main className="pt-16">
         <Hero />
         <About />
         <Education />
